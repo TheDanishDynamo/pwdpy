@@ -1,11 +1,11 @@
 Password Generator
 
-# Requirement
-https://www.practicepython.org/exercise/2014/05/28/16-password-generator.html
+## Requirement
+* https://www.practicepython.org/exercise/2014/05/28/16-password-generator.html
 
-pwdgen.py is the module with 
+## pwdgen.py is the module with 
   
-## PasswordGenerator class
+** PasswordGenerator class
 ## PasswordHelper class
   
 test.py
