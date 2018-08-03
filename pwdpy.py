@@ -41,16 +41,16 @@ class PasswordGenerator:
         self.NUMBERS = "0123456789"
         self.domain = ""
         # self.symbols = symbols
-        if self.symbols == True:
+        if self.symbols:
             self.domain += self.SYMBOLS
         # self.numbers = numbers
-        if self.numbers == True:
+        if self.numbers:
             self.domain += self.NUMBERS
         # self.uppercase = uppercase
-        if self.uppercase == True:
+        if self.uppercase:
             self.domain += self.UPPER_CASE
         # self.lowercase = lowercase
-        if self.lowercase == True:
+        if self.lowercase:
             self.domain += self.LOWER_CASE
 
         # Ease of use but questionsble default
@@ -73,7 +73,7 @@ class PasswordGenerator:
 
     def getDomainGroupCount(self):
         # sum(x > 0 for x in frequencies)
-        return sum(x == True for x in [self.uppercase, self.lowercase, self.symbols, self.numbers])
+        return sum(x for x in [self.uppercase, self.lowercase, self.symbols, self.numbers] if x)
 
     def getMaxDomain(self):
         return self.UPPER_CASE + self.LOWER_CASE + self.SYMBOLS + self.NUMBERS
@@ -167,25 +167,25 @@ class PasswordHelper:
         self.pwdgen = PasswordGenerator()
 
     def validate(self, password, numbers=False, lowercase=False, uppercase=False, symbols=False):
-        if numbers == True:
+        if numbers:
             # Look for numbers in password
             p = re.compile(".*["+self.pwdgen.NUMBERS+"].*")
             print(p.findall(password))
             if len(p.findall(password)) == 0:
                 return False
-        if lowercase == True:
+        if lowercase:
             # Look for lowercase in password
             p = re.compile(".*["+self.pwdgen.LOWER_CASE+"].*")
             print(p.findall(password))
             if len(p.findall(password)) == 0:
                 return False
-        if uppercase == True:
+        if uppercase:
             # Look for uppercase in password
             p = re.compile(".*["+self.pwdgen.UPPER_CASE+"].*")
             print(p.findall(password))
             if len(p.findall(password)) == 0:
                 return False
-        if symbols == True:
+        if symbols:
             # Look for symbols in password
             # Symbols are tricky because regex use the []() etc
             # so use for .. in ..
@@ -196,7 +196,7 @@ class PasswordHelper:
                 else:
                     found = True
                     break
-            if found == False:
+            if not found:
                 return False
 
         # All the above checks passed, so it's good!!

@@ -25,7 +25,7 @@ print(pgen4.getStrength())
 
 exit()
 
-while found == False:
+while not found:
     # Max base is 92, the len of 5479231608oyjbwsqzimtalrfnvudgcxphkePGWUCZNXEOKVJYHAQMIDLTSFRB'?[^)&|:{/%@!`$}=,+;(]_\-#*."~
     for j in pgen4.getMaxDomain():
         if password == guess + j:
