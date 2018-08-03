@@ -43,7 +43,8 @@ class TestPasswordGeneratorMethods(unittest.TestCase):
     def test_generate_1_to_1000_max_domain(self):
         for n in range(1, 1001):
             pg = PasswordGenerator(
-                length=n, numbers=True, symbols=True, lowercase=True, uppercase=True)
+                length=n, numbers=True, symbols=True, lowercase=True,
+                uppercase=True)
             p = pg.generate()
 
             # validate length
@@ -56,7 +57,8 @@ class TestPasswordGeneratorMethods(unittest.TestCase):
     def test_generate_44_max_domain(self):
         for n in range(44, 45):
             pg = PasswordGenerator(
-                length=n, numbers=True, symbols=True, lowercase=True, uppercase=True)
+                length=n, numbers=True, symbols=True, lowercase=True,
+                uppercase=True)
             p = pg.generate()
 
             # validate length
@@ -102,14 +104,17 @@ class TestPasswordGeneratorMethods(unittest.TestCase):
         p = pg.generate()
         # print(p)
         helper = PasswordHelper()
-        self.assertTrue(helper.validate(numbers=True, lowercase=False, password=p))
+        self.assertTrue(helper.validate(numbers=True, lowercase=False,
+                                        password=p))
 
     def test_validate_4_nlus(self):
-        pg = PasswordGenerator(length=4, numbers=True, lowercase=True, uppercase=True, symbols=True)
+        pg = PasswordGenerator(length=4, numbers=True, lowercase=True,
+                               uppercase=True, symbols=True)
         p = pg.generate()
         # print(p)
         helper = PasswordHelper()
-        self.assertTrue(helper.validate(password=p, numbers=True, lowercase=True, uppercase=True, symbols=True))
+        self.assertTrue(helper.validate(password=p, numbers=True,
+                        lowercase=True, uppercase=True, symbols=True))
 
 
 '''
