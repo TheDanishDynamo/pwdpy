@@ -100,14 +100,14 @@ class TestPasswordGeneratorMethods(unittest.TestCase):
     def test_validate_1_numbers(self):
         pg = PasswordGenerator(length=1, numbers=True)
         p = pg.generate()
-        print(p)
+        # print(p)
         helper = PasswordHelper()
         self.assertTrue(helper.validate(numbers=True, lowercase=False, password=p))
 
     def test_validate_4_nlus(self):
         pg = PasswordGenerator(length=4, numbers=True, lowercase=True, uppercase=True, symbols=True)
         p = pg.generate()
-        print(p)
+        # print(p)
         helper = PasswordHelper()
         self.assertTrue(helper.validate(password=p, numbers=True, lowercase=True, uppercase=True, symbols=True))
 

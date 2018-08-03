@@ -153,7 +153,7 @@ class PasswordGenerator:
             supplement = "".join(random.choice(self.getActiveDomain()) for i in range(remainder_length))
             temp += supplement
 
-        print(self.SYMBOLS)
+        # print(self.SYMBOLS)
         # Randomize
         return self.shuffle(temp)
 
@@ -170,19 +170,19 @@ class PasswordHelper:
         if numbers:
             # Look for numbers in password
             p = re.compile(".*["+self.pwdgen.NUMBERS+"].*")
-            print(p.findall(password))
+            # print(p.findall(password))
             if len(p.findall(password)) == 0:
                 return False
         if lowercase:
             # Look for lowercase in password
             p = re.compile(".*["+self.pwdgen.LOWER_CASE+"].*")
-            print(p.findall(password))
+            # print(p.findall(password))
             if len(p.findall(password)) == 0:
                 return False
         if uppercase:
             # Look for uppercase in password
             p = re.compile(".*["+self.pwdgen.UPPER_CASE+"].*")
-            print(p.findall(password))
+            # print(p.findall(password))
             if len(p.findall(password)) == 0:
                 return False
         if symbols:
