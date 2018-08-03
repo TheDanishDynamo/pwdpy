@@ -2,12 +2,12 @@
 # https://www.practicepython.org/exercises/
 
 '''
-Write a password generator in Python. 
-Be creative with how you generate passwords - 
-strong passwords have a mix of lowercase letters, 
-uppercase letters, numbers, and symbols. 
-The passwords should be random, generating a new 
-password every time the user asks for a new password. 
+Write a password generator in Python.
+Be creative with how you generate passwords -
+strong passwords have a mix of lowercase letters,
+uppercase letters, numbers, and symbols.
+The passwords should be random, generating a new
+password every time the user asks for a new password.
 Include your run-time code in a main method.
 
 Extra:
@@ -164,7 +164,7 @@ class PasswordGenerator:
 class PasswordHelper:
     def __init__(self):
         self.pwdgen = PasswordGenerator()
-    
+
     def validate(self, password, numbers=False, lowercase=False, uppercase=False, symbols=False):
         if numbers == True:
             # Look for numbers in password
@@ -177,13 +177,13 @@ class PasswordHelper:
             p = re.compile(".*["+self.pwdgen.LOWER_CASE+"].*")
             print(p.findall(password))
             if len(p.findall(password)) == 0:
-                return False        
+                return False
         if uppercase == True:
             # Look for uppercase in password
             p = re.compile(".*["+self.pwdgen.UPPER_CASE+"].*")
             print(p.findall(password))
             if len(p.findall(password)) == 0:
-                return False 
+                return False
         if symbols == True:
             # Look for symbols in password
             # Symbols are tricky because regex use the []() etc
@@ -197,12 +197,7 @@ class PasswordHelper:
                     break
             if found == False:
                 return False
-                
-        # All the above checks passed, so it's good!!            
+
+        # All the above checks passed, so it's good!!
         return True
-
-
-
-
-
 
