@@ -24,6 +24,7 @@ import random
 import string
 import re
 
+
 class PasswordGenerator:
 
     # Constructor; Define and init complexity
@@ -200,4 +201,3 @@ class PasswordHelper:
 
         # All the above checks passed, so it's good!!
         return True
-

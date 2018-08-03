@@ -3,6 +3,7 @@ from pwdpy import PasswordGenerator
 from pwdpy import PasswordHelper
 import numpy
 
+
 class TestPasswordGeneratorMethods(unittest.TestCase):
 
     def test_generate_default_blank(self):
@@ -60,10 +61,14 @@ class TestPasswordGeneratorMethods(unittest.TestCase):
 
             # validate length
             self.assertEqual(n, len(p))
-    # Generate a password and verify that each character is
-    # evenly distributed in each domain NLUS, with some slack
-    # in case of length not divisible by 4 (NLUS)
+
     def test_generate_domain_analysis(self):
+        """Generate and verify password.
+
+        Generate a password and verify that each character is
+        evenly distributed in each domain NLUS, with some slack
+        in case of length not divisible by 4 (NLUS)
+        """
         pwl = 10
         pg = PasswordGenerator(length=pwl, numbers=True,
                                symbols=True, lowercase=True, uppercase=True)
@@ -105,6 +110,8 @@ class TestPasswordGeneratorMethods(unittest.TestCase):
         print(p)
         helper = PasswordHelper()
         self.assertTrue(helper.validate(password=p, numbers=True, lowercase=True, uppercase=True, symbols=True))
+
+
 '''
     Sample tests
 
