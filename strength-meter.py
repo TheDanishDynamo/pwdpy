@@ -13,8 +13,8 @@ pgen4 = PasswordGenerator(
     lowercase=False)
 
 password = pgen4.generate()
-#print(len(pgen4.NUMBERS+pgen4.LOWER_CASE+pgen4.UPPER_CASE+pgen4.SYMBOLS))
-#print(pgen4.NUMBERS+pgen4.LOWER_CASE+pgen4.UPPER_CASE+pgen4.SYMBOLS)
+# print(len(pgen4.NUMBERS+pgen4.LOWER_CASE+pgen4.UPPER_CASE+pgen4.SYMBOLS))
+# print(pgen4.NUMBERS+pgen4.LOWER_CASE+pgen4.UPPER_CASE+pgen4.SYMBOLS)
 
 print("password: " + password)
 
@@ -25,13 +25,14 @@ print(pgen4.getStrength())
 
 exit()
 
-while found == False:
-    # Max base is 92, the len of 5479231608oyjbwsqzimtalrfnvudgcxphkePGWUCZNXEOKVJYHAQMIDLTSFRB'?[^)&|:{/%@!`$}=,+;(]_\-#*."~
+while not found:
+    # Max base is 92, the len of 5479231608oyjbwsqzimtalrfnvudgcxphkePGWUCZNXEO
+    # KVJYHAQMIDLTSFRB'?[^)&|:{/%@!`$}=,+;(]_\-#*."~
     for j in pgen4.getMaxDomain():
         if password == guess + j:
             print("Guessed it! : " + guess + j)
             found = True
-    
+
 #    done = time.time()
 #    elapsed = done - start
 #    print("{} : {}".format(i*j, elapsed))

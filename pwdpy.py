@@ -2,17 +2,18 @@
 # https://www.practicepython.org/exercises/
 
 '''
-Write a password generator in Python. 
-Be creative with how you generate passwords - 
-strong passwords have a mix of lowercase letters, 
-uppercase letters, numbers, and symbols. 
-The passwords should be random, generating a new 
-password every time the user asks for a new password. 
+Write a password generator in Python.
+Be creative with how you generate passwords -
+strong passwords have a mix of lowercase letters,
+uppercase letters, numbers, and symbols.
+The passwords should be random, generating a new
+password every time the user asks for a new password.
 Include your run-time code in a main method.
 
 Extra:
 
-Ask the user how strong they want their password to be. For weak passwords, pick a word or two from a list.
+Ask the user how strong they want their password to be. For weak passwords,
+pick a word or two from a list.
 
 Password Length
 Include Symbols
@@ -24,37 +25,41 @@ import random
 import string
 import re
 
+
 class PasswordGenerator:
 
     # Constructor; Define and init complexity
-    def __init__(self, length=0, symbols=False, numbers=False, uppercase=False, lowercase=False, repeating=False):
+    def __init__(self, length=0, symbols=False, numbers=False, uppercase=False,
+                 lowercase=False, repeating=False):
         self.length = length  # Length of generated password
         self.symbols = symbols  # Include special characters
         self.numbers = numbers  # Include 0-9
         self.uppercase = uppercase  # Include A-Z
         self.lowercase = lowercase  # Include a-z
-        self.repeating = repeating  # If True then same element can occur multiple times
+        # If True then same element can occur multiple times
+        self.repeating = repeating
         self.UPPER_CASE = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         self.LOWER_CASE = "abcdefghijklmnopqrstuvwxyz"
         self.SYMBOLS = r"{}()[]#:;^,.?!|&_`~@$%/\+-=*'" + chr(34)
         self.NUMBERS = "0123456789"
         self.domain = ""
         # self.symbols = symbols
-        if self.symbols == True:
+        if self.symbols:
             self.domain += self.SYMBOLS
         # self.numbers = numbers
-        if self.numbers == True:
+        if self.numbers:
             self.domain += self.NUMBERS
         # self.uppercase = uppercase
-        if self.uppercase == True:
+        if self.uppercase:
             self.domain += self.UPPER_CASE
         # self.lowercase = lowercase
-        if self.lowercase == True:
+        if self.lowercase:
             self.domain += self.LOWER_CASE
 
         # Ease of use but questionsble default
         if self.domain == "" and self.length > 0:
-            self.domain = self.UPPER_CASE + self.LOWER_CASE + self.SYMBOLS + self.NUMBERS
+            self.domain = self.UPPER_CASE + self.LOWER_CASE + self.SYMBOLS + \
+                    self.NUMBERS
             self.lowercase = True
             self.uppercase = True
             self.symbols = True
@@ -72,7 +77,9 @@ class PasswordGenerator:
 
     def getDomainGroupCount(self):
         # sum(x > 0 for x in frequencies)
-        return sum(x == True for x in [self.uppercase, self.lowercase, self.symbols, self.numbers])
+        return [
+            self.uppercase, self.lowercase, self.symbols, self.numbers
+        ].count(True)
 
     def getMaxDomain(self):
         return self.UPPER_CASE + self.LOWER_CASE + self.SYMBOLS + self.NUMBERS
@@ -101,8 +108,8 @@ class PasswordGenerator:
             divisor += 1  # E.g. 4/4, 8/3, 8/2, 8/1
 
         if divisor == 0:
-            raise Exception(
-                "Password complexity must include upper case, lower case or symbols")
+            raise Exception("Password complexity must include upper case, "
+                            "lower case or symbols")
 
         if self.length == 0:
             raise Exception("Length must be greater than zero")
@@ -149,10 +156,13 @@ class PasswordGenerator:
         # If there still is remainder,
         # append random characters from the active domains
         if remainder_length > 0:
-            supplement = "".join(random.choice(self.getActiveDomain()) for i in range(remainder_length))
+            supplement = "".join(
+                random.choice(self.getActiveDomain())
+                for i in range(remainder_length)i
+            )
             temp += supplement
 
-        print(self.SYMBOLS)
+        # print(self.SYMBOLS)
         # Randomize
         return self.shuffle(temp)
 
@@ -161,30 +171,32 @@ class PasswordGenerator:
         random.shuffle(l)
         return "".join(l)
 
+
 class PasswordHelper:
     def __init__(self):
         self.pwdgen = PasswordGenerator()
-    
-    def validate(self, password, numbers=False, lowercase=False, uppercase=False, symbols=False):
-        if numbers == True:
+
+    def validate(self, password, numbers=False, lowercase=False,
+                 uppercase=False, symbols=False):
+        if numbers:
             # Look for numbers in password
             p = re.compile(".*["+self.pwdgen.NUMBERS+"].*")
-            print(p.findall(password))
+            # print(p.findall(password))
             if len(p.findall(password)) == 0:
                 return False
-        if lowercase == True:
+        if lowercase:
             # Look for lowercase in password
             p = re.compile(".*["+self.pwdgen.LOWER_CASE+"].*")
-            print(p.findall(password))
+            # print(p.findall(password))
             if len(p.findall(password)) == 0:
-                return False        
-        if uppercase == True:
+                return False
+        if uppercase:
             # Look for uppercase in password
             p = re.compile(".*["+self.pwdgen.UPPER_CASE+"].*")
-            print(p.findall(password))
+            # print(p.findall(password))
             if len(p.findall(password)) == 0:
-                return False 
-        if symbols == True:
+                return False
+        if symbols:
             # Look for symbols in password
             # Symbols are tricky because regex use the []() etc
             # so use for .. in ..
@@ -195,14 +207,8 @@ class PasswordHelper:
                 else:
                     found = True
                     break
-            if found == False:
+            if not found:
                 return False
-                
-        # All the above checks passed, so it's good!!            
+
+        # All the above checks passed, so it's good!!
         return True
-
-
-
-
-
-
